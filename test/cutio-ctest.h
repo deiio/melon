@@ -162,10 +162,10 @@ extern void (*cutio_teardown)();
     cutio_unit_assert++;                                                       \
     const char *e = "<null pointer>";                                          \
     const char *r = "<null pointer>";                                          \
-    if (expected) {                                                            \
+    if (expected != NULL) {                                                    \
       e = (expected);                                                          \
     }                                                                          \
-    if (result) {                                                              \
+    if (result != NULL) {                                                      \
       r = (result);                                                            \
     }                                                                          \
     if (strcmp(e, r) != 0) {                                                   \

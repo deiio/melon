@@ -63,6 +63,8 @@ typedef struct {
 static int define_cnt = 0;
 static char **define_array = NULL; /* Name of the -D macros */
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 /* Parse a single token */
 static void ParseOneToken(pstate *ps) {
   char *x = MlnStrSafe(ps->token_start); /* save the token permanently */
@@ -456,6 +458,7 @@ static void ParseOneToken(pstate *ps) {
     break;
   }
 }
+#pragma GCC diagnostic pop
 
 /*
  * Run the preprocessor over the input file text. The global variables
@@ -469,7 +472,7 @@ static void ParseOneToken(pstate *ps) {
 static void MlnPreprocessInput(char *z) {
   int i, j, k, n;
   int exclude = 0;
-  int start;
+  int start = 0;
   int line_no = 1;
   int start_line_no = 0;
 
@@ -574,6 +577,7 @@ void MlnParse(Melon *melon) {
   ps.filename = melon->filename;
   ps.error_cnt = 0;
   ps.state = MLN_PS_INITIALIZE;
+  ps.first_rule = NULL;
 
   /* Begin by reading the input file */
   fp = fopen(ps.filename, "rb");
