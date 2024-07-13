@@ -6,5 +6,11 @@
 #ifndef MELON_ACTION_H_
 #define MELON_ACTION_H_
 
-#endif
+#include "struct.h"
 
+MlnAction *MlnActionNew();
+MlnAction *MlnActionSort(MlnAction *ap);
+void MlnActionAdd(MlnAction **app, MlnActionState type, MlnSymbol *sym,
+                  void *arg);
+
+#endif

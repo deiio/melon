@@ -5,4 +5,6 @@
 
 #include "test/melon_test.h"
 
+void memory_error() { CU_FAIL("memory error"); }
+
 void MlnInitTest() { MlnInitOptionTest(); }

@@ -20,7 +20,7 @@ typedef struct {
     MLN_OPT_FSTR,
   } type;
   char *label;
-  char *arg;
+  void *arg;
   char *message;
 } MlnOption;
 

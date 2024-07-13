@@ -135,7 +135,7 @@ CU_TEST(option_test_print) {
 
   CU_ASSERT_EQ(size, fread(buf, 1, size, file));
   p = buf;
-  while (p != NULL) {
+  while (*p != '\0') {
     if (*p == '\n') {
       lines++;
     }
@@ -183,7 +183,7 @@ CU_TEST(option_test_error) {
   MlnOption options[] = {
       {MLN_OPT_FLAG, NULL, NULL, NULL},
   };
-  CU_ASSERT_EQ(1, MlnOptInit(argv, options, file));
+  CU_ASSERT_EQ(-1, MlnOptInit(argv, options, file));
 
   fclose(file);
 }
