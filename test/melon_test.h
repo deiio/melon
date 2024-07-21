@@ -6,7 +6,7 @@
 #ifndef MELON_TEST_H_
 #define MELON_TEST_H_
 
-#include "test/cutio-ctest.h"
+#include "test/cutio-ctest/cutio-ctest.h"
 
 // Interface
 void MlnInitTest();

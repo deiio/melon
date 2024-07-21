@@ -3,7 +3,7 @@
  * Author: mn, mn@furzoom.com
  */
 
-#include "test/cutio-ctest.h"
+#include "test/cutio-ctest/cutio-ctest.h"
 #include "test/melon_test.h"
 
 void test_setup() {

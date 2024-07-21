@@ -27,7 +27,7 @@ MAIN = main.o
 
 TEST_OBJ = test/melon_main.o  \
 					 test/melon_test.o  \
-					 test/cutio-ctest.o \
+					 test/cutio-ctest/cutio-ctest.o \
 					 test/option_test.o
 
 all: CFLAGS += -O2 -DNDEBUG

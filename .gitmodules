@@ -1,0 +1,4 @@
+[submodule "test/cutio-ctest"]
+	path = test/cutio-ctest
+	url = git@github.com:deiio/cutio-ctest.git
+	branch = release/v1.0.1

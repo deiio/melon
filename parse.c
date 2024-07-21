@@ -64,7 +64,10 @@ static int define_cnt = 0;
 static char **define_array = NULL; /* Name of the -D macros */
 
 #pragma GCC diagnostic push
+#if !defined(__has_warning) || __has_warning("-Wmaybe-uninitialized")
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif /* __has_warning */
+
 /* Parse a single token */
 static void ParseOneToken(pstate *ps) {
   char *x = MlnStrSafe(ps->token_start); /* save the token permanently */
