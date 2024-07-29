@@ -225,14 +225,14 @@ static FILE *MlnTplOpen(Melon *melon) {
   }
 
   in = fopen(tpl_name, "r");
-  if (need_free) {
-    free((char *)tpl_name);
-  }
 
   if (in == NULL) {
     fprintf(stderr, "Can't open the template file \"%s\".\n", tpl_name);
     melon->error_cnt++;
-    return NULL;
+  }
+
+  if (need_free) {
+    free((char *)tpl_name);
   }
 
   return in;
@@ -1255,8 +1255,8 @@ void MlnReportHeader(Melon *melon) {
   in = MlnFileOpen(melon, ".h", "r");
   if (in) {
     for (i = 1; i < melon->nterminal && fgets(line, kLineSize, in); i++) {
-      snprintf(pattern, kLineSize, "#define %s%-30s %2d\n",
-          prefix, melon->symbols[i]->name, i);
+      snprintf(pattern, kLineSize, "#define %s%-30s %2d\n", prefix,
+               melon->symbols[i]->name, i);
       if (strcmp(line, pattern)) {
         break;
       }
