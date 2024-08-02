@@ -290,7 +290,7 @@ static void yy_destructor(YYCODETYPE yymajor, YYMINORTYPE *yypminor) {
  * all stack elements before shutting the parser down.
  *
  *    + p is a pointer to the parser. This should be a pointer
- *      obtained from ParserAlloc.
+ *      obtained from ParseAlloc.
  *    + free_proc is a pointer to a function used to reclaim memory
  *      obtained from malloc.
  */
