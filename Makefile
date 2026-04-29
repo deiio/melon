@@ -6,6 +6,9 @@ CFLAGS ?= -Wall -Werror
 CCOPT = $(CFLAGS)
 INCLUDES ?= -I.
 
+PREFIX ?= /usr/local
+BINDIR = $(PREFIX)/bin
+
 PRGNAME = melon
 TEST_BIN = melon_main
 
@@ -63,7 +66,12 @@ table.o:			table.c table.h
 test: $(TEST_OBJ) $(OBJ)
 	$(CC) $(CFLAGS) -o $(TEST_BIN) $^
 
-.PHONY: clean test
+install: all
+	install -d $(BINDIR)
+	install -m 755 $(PRGNAME) $(BINDIR)
+	install -m 644 mlt_parser.c $(BINDIR)
+
+.PHONY: clean test install
 clean:
 	rm -rf $(PRGNAME) $(OBJ) $(MAIN) $(TEST_BIN) $(TEST_OBJ) *.o test/*.o *.dSYM
 

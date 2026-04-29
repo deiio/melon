@@ -18,7 +18,7 @@
 
 #define MLN_VERSION_MAJOR 0
 #define MLN_VERSION_MINOR 1
-#define MLN_VERSION_PATCH 3
+#define MLN_VERSION_PATCH 4
 
 /* Helper macros */
 #define MLN_CON(A, B) MLN_CON_(A, B)
