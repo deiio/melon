@@ -32,8 +32,8 @@
 
 /*
  * Inputs:
- *  addr1:    A sorted, null-terminated linked list. (May be null)
- *  addr2:    A sorted, null-terminated linked list. (May be null)
+ *  addr1:    A sorted, null-terminated linked list. (Maybe null)
+ *  addr2:    A sorted, null-terminated linked list. (Maybe null)
  *  cmp_func: A pointer to the comparison function.
  *  offset:   Offset in the structure to the "next" field.
  *
@@ -87,8 +87,8 @@ static const int kListSize = 30;
 /*
  * Input:
  *  list:     Pointer to a singly-linked list of structures.
- *  next:     Pointer to pointer to the second element of the list.
- *  cmp_func: A comparision function.
+ *  next:     Pointer to the second element of the list.
+ *  cmp_func: A comparison function.
  *
  * Return value:
  *  A pointer to the head of a sorted list containing the elements

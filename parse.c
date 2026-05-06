@@ -55,7 +55,7 @@ typedef struct {
   int *decl_ln_slot;       /* Where the declaration linenumber is put */
   MlnAssocType decl_assoc; /* Assign this association to decl arguments */
   int prec_counter;        /* Assign this precedence to decl arguments */
-  MlnRule *first_rule;     /* Pointer to first rule in the grammer */
+  MlnRule *first_rule;     /* Pointer to first rule in the grammar */
   MlnRule *last_rule;      /* Pointer to the most recently parsed rule */
 } pstate;
 
@@ -564,7 +564,7 @@ void MlnHandleDOption(char *z) {
  * In spite of its name, this function is really a scanner. It read
  * int the entire input file (all at once) then tokenizes it. Each
  * token is passed to the function "ParseOneToken" which builds
- * all the approprite data structures in the global state vector
+ * all the appropriate data structures in the global state vector
  * "melon".
  */
 void MlnParse(Melon *melon) {
@@ -690,7 +690,7 @@ void MlnParse(Melon *melon) {
             cp++;
           }
         } else if (c == '/' && cp[1] == '/') {
-          /* Skip C++ sytle comments too */
+          /* Skip C++ style comments too */
           cp += 2;
           while ((c = *cp) != '\0' && c != '\n') {
             cp++;

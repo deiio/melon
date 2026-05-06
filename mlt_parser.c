@@ -12,7 +12,7 @@
  * This section will be null unless melon is run with the -m switch.
  */
 /*
- * These contains (all generated automatically by the parser generator)
+ * These constants (all generated automatically by the parser generator)
  * specify the various kinds of tokens (terminals) that the parser
  * understands.
  *
@@ -49,13 +49,13 @@
  *                        This is typically a union of many types, one of
  *                        which is ParseTOKENTYPE. The entry in the union
  *                        for base tokens is called "yy0".
- *    YYSTACKDEPTH        is the maxmium depth of the parser's stack.
+ *    YYSTACKDEPTH        is the maximum depth of the parser's stack.
  *    ParseARG_SDECL      A static variable declaration for the
  *    ParseARG_PDECL      A parameter declaration for the
  *    ParseARG_STORE      Code to store %extra_argument into
  *    ParseARG_FETCH      Code to extract %extra_argument from
  *    YYNSTATE            the combined number of states.
- *    YYNRULE             the number of rules in the grammer.
+ *    YYNRULE             the number of rules in the grammar.
  *    YYERRORSYMBOL       is the code number of the error symbol. If not
  *                        defined, then to no error processing.
  */
@@ -92,12 +92,12 @@
  *      yy_action[ yy_shift_ofst[S] + X ]
  *
  *  If the index value yy_shift_ofst[S]+X is out of range or if the
- *  value yy_lookahead[yy_sfhit_ofst[S]+X is not equal to X or if
+ *  value yy_lookahead[yy_shift_ofst[S]+X is not equal to X or if
  *  yy_shift_ofst[S] is equal to YY_SHIFT_USE_DFLT, it means that
  *  the action is not in the table and that yy_default[S] should be
  *  used instead.
  *
- *  The formula above is for compuating the action when the lookahead
+ *  The formula above is for computing the action when the lookahead
  *  is a terminal symbol. If the lookahead is a non-terminal (as occurs
  *  after a reduce action) then the yy_reduce_ofst[] array is used in
  *  place of the yy_shift_ofst[] array and YY_REDUCE_USE_DFLT is used
@@ -123,7 +123,7 @@
  *      %fallback ID X Y Z.
  *
  * appears in the grammar, then ID becomes a fallback token for X, Y,
- * and Z. Whenever one of the tokens X, Y or Z is input to the parser
+ * and Z. Whenever one of the tokens X, Y or Z is input to the parser,
  * but it does not parse, the type of the token is changed to ID and
  * the parse is retried before an error is thrown.
  */
@@ -134,7 +134,7 @@ static const YYCODETYPE yyFallback[] = {
 #endif /* YYFALLBACK */
 
 /* The following structure represents a single element of the
- * parser's stack. Information sotred includes:
+ * parser's stack. Information stored includes:
  *
  *    + The state number for the parser at this level of the stack.
  *
@@ -167,13 +167,13 @@ static FILE *yyTraceFILE = NULL;
 static const char *yyTracePrompt = NULL;
 
 /* Turn parser tracing on by giving a stream to which to write the trace
- * and a prompt to preface each trace message. Tracing is truned off
+ * and a prompt to preface each trace message. Tracing is turned off
  * by making either argument NULL.
  *
  *    + file is a FILE* to which trace output should be written.
- *      If NULL, then tracing is truned off.
+ *      If NULL, then tracing is turned off.
  *    + prompt is a prefix string written at the beginning of every
- *      line of trace output. If NULL, then tracing is truned off.
+ *      line of trace output. If NULL, then tracing is turned off.
  */
 void ParseTrace(FILE *file, const char *prompt) {
   yyTraceFILE = file;
@@ -193,7 +193,7 @@ static const char *yyTokenName[] = {
 };
 
 /*
- * For tracing reduce actions, the names of all rules are requred.
+ * For tracing reduce actions, the names of all rules are required.
  */
 static const char *yyRuleName[] = {
 %%
@@ -204,7 +204,7 @@ static const char *yyRuleName[] = {
  * This function returns the symbolic name associated with a token
  * value.
  */
-const char *PraseTokenName(int token_type) {
+const char *ParseTokenName(int token_type) {
 #ifndef NDEBUG
   if (token_type > 0 &&
       token_type < (sizeof(yyTokenName) / sizeof(yyTokenName[0]))) {
@@ -310,7 +310,7 @@ void ParseFree(void *p, void (free_proc)(void*)) {
  * lookahead token lookahead.
  *
  * If the lookahead token is YYNOCODE, then check to see if the
- * action is independent of the lookahead. It it is, return the
+ * action is independent of the lookahead. If it is, return the
  * action, otherwise return YY_NO_ACTION.
  */
 static int yy_find_shift_action(yyParser *pParser, int lookahead) {
@@ -494,7 +494,7 @@ static void yy_parse_failed(yyParser *yypParser) {
 }
 
 /*
- * The following code executes when a syntax error first occors.
+ * The following code executes when a syntax error first occurs.
  */
 static void yy_syntax_error(yyParser *yypParser, int yymajor,
     YYMINORTYPE yyminor) {
@@ -543,7 +543,7 @@ void Parse(void *yyp, int yymajor, ParseTOKENTYPE yyminor ParseARG_PDECL) {
   int yyerrorhit = 0;   /* Ture if yymajor has invoked an error */
   yyParser *yypParser;  /* THe parser */
 
-  /* (re)initialiee the parser, if necessary */
+  /* (re)initialize the parser, if necessary */
   yypParser = (yyParser *) yyp;
   if (yypParser->yyidx < 0) {
     if (yymajor == 0) {
@@ -586,7 +586,7 @@ void Parse(void *yyp, int yymajor, ParseTOKENTYPE yyminor ParseARG_PDECL) {
 #ifdef YYERRORSYMBOL
       /*
        * A syntax error has occurred.
-       * The response to an error depends upon whether or not the
+       * The response to an error depends upon whether the
        * grammar defines an error token "ERROR".
        *
        * THis is what we do if the grammar does define ERROR:
@@ -600,7 +600,7 @@ void Parse(void *yyp, int yymajor, ParseTOKENTYPE yyminor ParseARG_PDECL) {
        *    * Set the error count to three.
        *
        *    * Begin accepting and shifting new tokens. No new error
-       *      processing will occur until thress tokens have been
+       *      processing will occur until these tokens have been
        *      shifted successfully.
        */
       if (yypParser->yyerrcnt < 0) {

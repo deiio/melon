@@ -21,7 +21,7 @@
 const char *kDefaultTemplateFile = "mlt_parser.c";
 
 /*
- * Generate a fielname with the given suffix. Space to hold the
+ * Generate a filename with the given suffix. Space to hold the
  * name comes from malloc() and must be freed by calling function.
  */
 static char *MlnFileMakeName(Melon *melon, const char *suffix) {
@@ -270,7 +270,7 @@ const int kLineSize = 1000;
  * a line is seen which begins with "%%". The line number is
  * tracked.
  *
- * if name != NULL, the any word that begin with "Parse" is changed
+ * if name != NULL, any word that begin with "Parse" is changed
  * to begin with *name instead.
  */
 static void MlnTplXfer(const char *name, FILE *in, FILE *out, int *lineno) {
@@ -560,7 +560,7 @@ void MlnEmitCode(FILE *out, MlnRule *rule, Melon *melon, int *lineno) {
 }
 
 /*
- * Print the definitation of the union used for the parser's data stack.
+ * Print the definition of the union used for the parser's data stack.
  * This union contains fields for every possible data type for tokens
  * and nonterminals. In the process of computing and printing this
  * union, also set the ".data_type_num" filed of every terminal and
@@ -661,7 +661,7 @@ static void MlnPrintStackUnion(FILE *out, Melon *melon, int *lineno,
     }
   }
 
-  /* Print out the definitation of YYTOKENTYPE and YYMINORTYPE */
+  /* Print out the definition of YYTOKENTYPE and YYMINORTYPE */
   name = melon->name == NULL ? "Parse" : melon->name;
   if (mhflag) {
     fprintf(out, "#if INTERFACE\n");
@@ -729,7 +729,7 @@ typedef struct {
 } MlnAxSet;
 
 /*
- * Compare to MlnAxSet structures for sorting pruposes.
+ * Compare to MlnAxSet structures for sorting purposes.
  */
 static int MlnAxSetCompare(const void *a, const void *b) {
   const MlnAxSet *p1 = a, *p2 = b;
@@ -870,9 +870,9 @@ void MlnReportTable(Melon *melon, int mhflag) {
    *  yy_lookahead[]    A table containing the lookahead for each entry
    *                    in yy_action. Used to detect hash collisions.
    *  yy_shift_ofst[]   For each state, the offset into yy_action for
-   *                    shfiting terminals.
+   *                    shifting terminals.
    *  yy_reduce_ofst[]  For each state, the offset into yy_action for
-   *                    shfiting non-terminals after a reduce.
+   *                    shifting non-terminals after a reduce.
    *  yy_default[]      Default action for each state.
    */
 
@@ -1071,7 +1071,7 @@ void MlnReportTable(Melon *melon, int mhflag) {
   fprintf(out, "};\n");
   line_no++;
 
-  /* Output the default actoin table */
+  /* Output the default action table */
   fprintf(out, "static YYACTIONTYPE yy_default[] = {\n");
   line_no++;
   n = melon->nstate;
@@ -1199,7 +1199,7 @@ void MlnReportTable(Melon *melon, int mhflag) {
   /* Generate the table of rule information.
    *
    * Note: This code depends on the fact that rules are number
-   * sequentually beginning with 0.
+   * sequentially beginning with 0.
    */
   for (rule = melon->rule; rule != NULL; rule = rule->next) {
     fprintf(out, "  { %d, %d },\n", rule->lhs->index, rule->nrhs);
@@ -1324,7 +1324,7 @@ void MlnCompressTables(Melon *melon) {
     }
 
     /* Do not make default if the number of rules to default
-     * is not at leaset 2 */
+     * is not at least 2 */
     if (nbest < 2) {
       continue;
     }

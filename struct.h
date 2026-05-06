@@ -36,7 +36,7 @@ typedef enum MlnActionState {
 } MlnActionState;
 
 /*
- * Symbols (terminals and non-terminals) of the grammer are stored
+ * Symbols (terminals and non-terminals) of the grammar are stored
  * in the following.
  */
 typedef struct MlnSymbol {
@@ -49,7 +49,7 @@ typedef struct MlnSymbol {
   struct MlnRule *rule; /* Linked list of rules of this (if an NT) */
   struct MlnSymbol *fallback; /* Fallback token while the token doesn't parse */
   int prec;                   /* Precedence if defined (-1 otherwise) */
-  MlnAssocType assoc;         /* Associativity if predecence is defined */
+  MlnAssocType assoc;         /* Associativity if precedence is defined */
   void *first_set;            /* First-set for all rules of this symbol */
   MlnBoolean lambda;          /* True if NT and can generate an empty string */
   char *destructor;           /* Code which executes whenever this symbol is
@@ -63,13 +63,13 @@ typedef struct MlnSymbol {
 } MlnSymbol;
 
 /*
- * Each production rule in the grammer is stored in the following
+ * Each production rule in the grammar is stored in the following
  * structure.
  */
 typedef struct MlnRule {
   MlnSymbol *lhs;           /* Left-hand side of the rule */
   char *lhs_alias;          /* Alias for the LHS (NULL if none) */
-  int rule_line;            /* Line nubmer for the rule */
+  int rule_line;            /* Line number for the rule */
   int nrhs;                 /* Number of RHS symbols */
   MlnSymbol **rhs;          /* The RHS symbols */
   char **rhs_alias;         /* An alias for each RHS symbol (NULL if none) */
@@ -92,8 +92,8 @@ typedef struct MlnPLink {
   struct MlnPLink *next;    /* The next propagate link */
 } MlnPLink;
 
-/* A configuration is a production rule of the grammer together with
- * a mark (dot) showing how nuch of that rule has been processed so far.
+/* A configuration is a production rule of the grammar together with
+ * a mark (dot) showing how much of that rule has been processed so far.
  * Configuration also contain a follow-set which is a list of terminal
  * symbols which are allowed to immediately follow the end of the rule.
  * Every configuration is recorded as an instance of the following.
@@ -134,7 +134,7 @@ typedef struct MlnAction {
 typedef struct MlnState {
   MlnConfig *bp;  /* The basis configurations for this state */
   MlnConfig *cfp; /* All configurations in this set */
-  int index;      /* Sequencial number for this state */
+  int index;      /* Sequential number for this state */
   MlnAction *ap;  /* Array of actions for this state */
   int ntkn_act;   /* Number of actions on terminals */
   int nntkn_act;  /* Number of actions on non-terminals */
@@ -183,7 +183,7 @@ typedef struct Melon {
   char *arg;           /* Declaration of the 3rd argument to parser */
   char *token_type;    /* Type of terminal symbols in the parser stack */
   char *var_type;      /* The default type of non-terminal symbols */
-  char *start;         /* Name of the start symbol for the grammer */
+  char *start;         /* Name of the start symbol for the grammar */
   char *stack_size;    /* Size of the parser stack */
   char *include;       /* Code to put at the start of the C file */
   int include_line;    /* Line number for start of include code */
@@ -207,7 +207,7 @@ typedef struct Melon {
   char *filename;    /* Name of the input file */
   char *output_file; /* Name of the current output file */
   int nconflict;     /* Number of parsing conflicts */
-  int table_size;    /* Szie of the parse tables */
+  int table_size;    /* Size of the parse tables */
   int basis_flag;    /* Print only basis configurations */
   char *argv0;       /* Name of the program */
 } Melon;

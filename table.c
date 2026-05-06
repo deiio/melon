@@ -24,11 +24,11 @@ static unsigned str_hash(const char *s) {
  * Used for safe string hash table.
  */
 typedef struct X1 {
-  int size;           /* The number of availble slots. Must be
+  int size;           /* The number of available slots. Must be
                        * power of 2 greater that or equal to 1 */
   int count;          /* Number of currently slots filled */
   struct X1Node *tbl; /* The data stored here */
-  struct X1Node **ht; /* Hash table for loopup */
+  struct X1Node **ht; /* Hash table for lookup */
 } X1;
 
 /*
@@ -189,7 +189,7 @@ char *MlnStrSafeFind(const char *key) {
  * Used for MlnSymbol hash table.
  */
 typedef struct X2 {
-  int size;           /* The nubmer of available slots. Must be a power
+  int size;           /* The number of available slots. Must be a power
                        * of 2 greater than or equal to 1 */
   int count;          /* Number of currently slots filled */
   struct X2Node *tbl; /* The data stored here */
@@ -243,12 +243,12 @@ MlnSymbol *MlnSymbolNew(const char *x) {
 
 /* Compare two symbols for working purposes.
  *
- * Symbols that begin with uppper case letters (terminals or tokens)
+ * Symbols that begin with upper case letters (terminals or tokens)
  * must sort before symbols that begin with lower case letters
  * (non-terminals). Other than that, the order does not matter.
  *
  * We find experimentally that leaving the symbols is their original
- * order (the order they appeared in the grammer file) gives the smallest
+ * order (the order they appeared in the grammar file) gives the smallest
  * parser tables in CutDB.
  */
 int MlnSymbolCmp(MlnSymbol **a, MlnSymbol **b) {
@@ -407,7 +407,7 @@ MlnSymbol **MlnSymbolArrayOf() {
  * Used for MlnState hash table.
  */
 typedef struct X3 {
-  int size;           /* The nubmer of available slots. Must be a power
+  int size;           /* The number of available slots. Must be a power
                        * of 2 greater than or equal to 1 */
   int count;          /* Number of currently slots filled */
   struct X3Node *tbl; /* The data stored here */
@@ -457,7 +457,7 @@ int MlnStateCmp(MlnConfig *a, MlnConfig *b) {
   return rc;
 }
 
-/* Allocacte a new state structure. */
+/* Allocate a new state structure. */
 MlnState *MlnStateNew() {
   MlnState *new = malloc(sizeof(MlnState));
   MlnMemoryCheck(new);
